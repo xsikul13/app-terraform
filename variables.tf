@@ -9,3 +9,7 @@ variable "resource_group_name" {
 variable "target_location" {
     default = "westeurope"
 }
+
+variable "storage_account" {
+    default="nc19tfstate"
+}

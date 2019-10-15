@@ -3,6 +3,14 @@ provider "azurerm" {
   version = "~>1.34.0"
 }
 
+terraform {
+  backend "azurerm" {
+    storage_account_name  = "nc19tfstate"
+    container_name        = "tfstate"
+    key                   = "terraform.tfstate"
+  }
+}
+
 resource "azurerm_resource_group" "resource_group" {
     name = "${var.environment_tag}-${var.resource_group_name}"
     location = "${var.target_location}"
