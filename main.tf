@@ -19,3 +19,16 @@ resource "azurerm_resource_group" "resource_group" {
         environment = "${var.environment_tag}"
     }
 }
+
+resource "azurerm_app_service_plan" "app_service_plan" {
+  name                = "app_service_plan"
+  location            = "${azurerm_resource_group.resource_group.location}"
+  resource_group_name = "${azurerm_resource_group.resource_group.name}"
+  kind = "Linux"
+  reserved = true
+
+  sku {
+    tier = "Standard"
+    size = "B1"
+  }
+}
