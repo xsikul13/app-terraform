@@ -3,13 +3,13 @@ provider "azurerm" {
   version = "~>1.34.0"
 }
 
-terraform {
-  backend "azurerm" {
-    storage_account_name  = "nc19tfstate"
-    container_name        = "tfstate"
-    key                   = "terraform.tfstate"
-  }
-}
+#terraform {
+#  backend "azurerm" {
+#    storage_account_name  = "nc19tfstate"
+#    container_name        = "tfstate"
+#    key                   = "terraform.tfstate"
+#  }
+#}
 
 resource "azurerm_resource_group" "resource_group" {
     name = "${var.environment_tag}-${var.resource_group_name}"
@@ -42,7 +42,7 @@ resource "azurerm_app_service" "app_service" {
 
   site_config {
     app_command_line = ""
-    linux_fx_version = "DOCKER|cu19registry.azurecr.io/app-dotnet:6"
+    linux_fx_version = "DOCKER|cu19registry.azurecr.io/app-dotnet:4"
   }
 
   app_settings = {

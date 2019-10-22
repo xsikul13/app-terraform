@@ -38,30 +38,30 @@ output "ContainerRegistryPassword" {
 }
 
 
-#Service Principal role creation
-data "azurerm_subscription" "current" {}
+# #Service Principal role creation
+# data "azurerm_subscription" "current" {}
 
-data "azurerm_role_definition" "contributor" {
-  name = "Contributor"
-}
+# data "azurerm_role_definition" "contributor" {
+#   name = "Contributor"
+# }
 
-provider "azuread" {
-  version = "0.6.0"
-}
+# provider "azuread" {
+#   version = "0.6.0"
+# }
 
-# Create an application
-resource "azuread_application" "nc19app" {
-  name = "nc19app"
-}
+# # Create an application
+# resource "azuread_application" "nc19app" {
+#   name = "nc19app"
+# }
 
-resource "azuread_application_password" "nc19app" {
-  application_id = "${azuread_application.nc19app.id}"
-  value                = "VT=uSgbTanZhyz@%nL9Hpd+Tfay_MRV#"
-  end_date             = "2020-01-01T01:02:03Z"
-}
+# resource "azuread_application_password" "nc19app" {
+#   application_id = "${azuread_application.nc19app.id}"
+#   value                = "VT=uSgbTanZhyz@%nL9Hpd+Tfay_MRV#"
+#   end_date             = "2020-01-01T01:02:03Z"
+# }
 
-resource "azurerm_role_assignment" "nc19appra" {
-  principal_id="${azuread_application.nc19app.id}"
-  role_definition_id="${data.azurerm_role_definition.contributor.id}"
-  scope="${data.azurerm_subscription.current.id}"
-}
+# resource "azurerm_role_assignment" "nc19appra" {
+#   principal_id="${azuread_application.nc19app.id}"
+#   role_definition_id="${data.azurerm_role_definition.contributor.id}"
+#   scope="${data.azurerm_subscription.current.id}"
+# }
